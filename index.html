@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayky &amp; Vanessa — 1 ano de nós ❤️</title>
+<style>
+  :root{
+    --noite:#0d1020; --noite2:#161a33; --vinho:#7f1d3a; --rosa:#ff5d7d; --rosa2:#ff8fa5;
+    --vermelho:#e23636; --azul:#2b4acb; --ouro:#f5c542; --creme:#fff6ec;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--noite);color:var(--creme);overflow-x:hidden}
+  /* ---------- céu noturno / lua / morcegos ---------- */
+  .ceu{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(ellipse at 85% -5%, rgba(245,197,66,.22), transparent 45%),
+    linear-gradient(180deg,#0d1020 0%,#1a1030 55%,#2a1130 100%)}
+  .lua{position:absolute;top:34px;right:6vw;width:86px;height:86px;border-radius:50%;
+    background:radial-gradient(circle at 38% 35%, #fffbe8, #f5e3a8 60%, #e8cf87);
+    box-shadow:0 0 60px 18px rgba(245,227,168,.35)}
+  .estrela{position:absolute;background:#fff;border-radius:50%;opacity:.85;animation:piscar 2.8s infinite ease-in-out}
+  @keyframes piscar{0%,100%{opacity:.25}50%{opacity:.95}}
+  .morcego{position:absolute;color:#05060f;animation:voar linear infinite}
+  @keyframes voar{0%{transform:translateX(-12vw) translateY(0)}50%{transform:translateX(45vw) translateY(-26px)}100%{transform:translateX(105vw) translateY(6px)}}
+  /* ---------- teia / aranha ---------- */
+  .teia{position:fixed;top:0;left:0;width:190px;height:190px;z-index:3;pointer-events:none;opacity:.5}
+  .aranha{position:fixed;top:0;left:128px;z-index:3;text-align:center;animation:balanco 5s ease-in-out infinite;pointer-events:none}
+  .aranha .fio{width:2px;height:64px;background:rgba(255,255,255,.55);margin:0 auto}
+  .aranha .bicho{font-size:30px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6))}
+  .aranha .coracao{font-size:15px;margin-top:-4px;animation:pulsar 1.6s infinite}
+  @keyframes balanco{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(16px) rotate(-2deg)}}
+  @keyframes pulsar{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+  /* ---------- corações flutuantes ---------- */
+  .coracoes{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .coracoes span{position:absolute;bottom:-40px;animation:subir linear infinite;opacity:0}
+  @keyframes subir{0%{transform:translateY(0) rotate(0deg);opacity:0}8%{opacity:.85}100%{transform:translateY(-108vh) rotate(50deg);opacity:0}}
+  main{position:relative;z-index:2}
+  section{max-width:880px;margin:0 auto;padding:64px 22px;text-align:center}
+  /* ---------- herói ---------- */
+  .hero{padding-top:92px}
+  .selo{display:inline-block;background:linear-gradient(90deg,var(--vermelho),var(--vinho));
+    border:1px solid rgba(245,197,66,.65);color:#ffe9a8;letter-spacing:3px;font-size:13px;
+    padding:8px 18px;border-radius:999px;text-transform:uppercase}
+  h1{font-size:clamp(44px,9vw,84px);line-height:1.05;margin:22px 0 6px;
+    background:linear-gradient(92deg,#ffd9de,#ff5d7d 40%,#f5c542 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .amp{font-style:italic}
+  .sub{font-size:clamp(18px,3.4vw,24px);color:#ffd9de;font-style:italic}
+  .datas{margin-top:10px;color:#cbb8d9;letter-spacing:1px;font-size:15px}
+  .moldura{margin:38px auto 8px;width:min(430px,88vw);padding:10px;border-radius:230px 230px 22px 22px;
+    background:linear-gradient(160deg,var(--ouro),#b8860b 30%,var(--vinho) 75%,var(--vermelho));
+    box-shadow:0 24px 70px rgba(0,0,0,.65),0 0 0 6px rgba(255,255,255,.06)}
+  .moldura .foto{border-radius:220px 220px 14px 14px}
+  .foto{display:block;width:100%;background:#23264a;object-fit:cover}
+  .legenda{color:#e9c9d4;font-style:italic;margin-top:14px}
+  /* ---------- contador ---------- */
+  .contador{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .caixa{background:rgba(255,255,255,.06);border:1px solid rgba(245,197,66,.4);border-radius:16px;
+    padding:16px 10px;min-width:86px;backdrop-filter:blur(3px)}
+  .caixa b{display:block;font-size:34px;color:#ffd9de}
+  .caixa small{letter-spacing:2px;text-transform:uppercase;color:#cbb8d9;font-size:11px}
+  h2{font-size:clamp(28px,5.4vw,40px);color:#ffe9a8;margin-bottom:14px}
+  h2 .enfeite{color:var(--rosa)}
+  p.texto{font-size:18px;line-height:1.75;color:#f3e6ee;max-width:660px;margin:0 auto}
+  /* ---------- galeria ---------- */
+  .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:28px}
+  .galeria figure{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 12px 32px rgba(0,0,0,.5);transform:rotate(-.6deg);transition:transform .35s}
+  .galeria figure:nth-child(even){transform:rotate(.7deg)}
+  .galeria figure:hover{transform:rotate(0) scale(1.035)}
+  .galeria figcaption{padding:10px 8px;font-style:italic;color:#ffd9de;background:rgba(255,255,255,.05);font-size:15px}
+  /* ---------- superpoderes ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:28px;text-align:left}
+  .card{border-radius:18px;padding:24px 20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)}
+  .card.aranha-card{border-top:4px solid var(--vermelho)}
+  .card.morcego-card{border-top:4px solid var(--ouro)}
+  .card.dupla-card{border-top:4px solid var(--rosa)}
+  .card h3{font-size:20px;margin-bottom:8px;color:#fff}
+  .card p{line-height:1.65;color:#ead9e4;font-size:16px}
+  /* ---------- carta ---------- */
+  .carta{background:linear-gradient(170deg,#fff8ee,#ffeef0);color:#43222e;border-radius:14px;
+    padding:clamp(26px,5vw,50px);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.55);
+    transform:rotate(-.5deg);position:relative}
+  .carta::before{content:"💌";position:absolute;top:-20px;right:22px;font-size:38px;transform:rotate(10deg)}
+  .carta h2{color:#a4133c}
+  .carta p{font-size:18px;line-height:1.85;margin-bottom:16px}
+  .carta .assina{font-size:22px;font-style:italic;color:#a4133c;text-align:right;margin-top:6px}
+  footer{position:relative;z-index:2;text-align:center;padding:38px 16px 54px;color:#bda9c9;font-size:15px}
+  footer .bat{color:#05060f;font-size:20px}
+  img[data-b64]{min-height:120px}
+</style>
+</head>
+<body>
+<div class="ceu" id="ceu"><div class="lua"></div></div>
+
+<svg class="teia" viewBox="0 0 200 200" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.4">
+  <path d="M0 0 L200 200 M0 0 L200 90 M0 0 L90 200 M0 0 L200 0 M0 0 L0 200" opacity=".55"/>
+  <path d="M28 12 Q60 34 96 30 M14 62 Q58 92 112 74 M8 118 Q64 152 168 128 M44 8 Q74 66 66 120 M104 22 Q128 84 104 150" opacity=".8"/>
+</svg>
+<div class="aranha"><div class="fio"></div><div class="bicho">🕷️</div><div class="coracao">❤️</div></div>
+<div class="coracoes" id="coracoes"></div>
+
+<main>
+  <!-- HERÓI -->
+  <section class="hero">
+    <span class="selo">🕸️ Uma história de heróis 🦇</span>
+    <h1>Kayky <span class="amp">&amp;</span> Vanessa</h1>
+    <p class="sub">1 ano de namoro — e a aventura só está começando</p>
+    <p class="datas">desde 09 de novembro de 2025</p>
+    <div class="moldura"><img class="foto" data-b64="fotos/foto1.b64" alt="Kayky e Vanessa arrumados embaixo de um arco de flores"></div>
+    <p class="legenda">Nossa foto favorita: de festa, no arco de flores ✨</p>
+  </section>
+
+  <!-- CONTADOR -->
+  <section>
+    <h2><span class="enfeite">❤</span> Nosso tempo juntinhos <span class="enfeite">❤</span></h2>
+    <p class="texto">Cada segundo ao seu lado conta. Olha só quanto amor já coube nesse primeiro ano:</p>
+    <div class="contador">
+      <div class="caixa"><b id="dias">365</b><small>dias</small></div>
+      <div class="caixa"><b id="horas">0</b><small>horas</small></div>
+      <div class="caixa"><b id="min">0</b><small>minutos</small></div>
+      <div class="caixa"><b id="seg">0</b><small>segundos</small></div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section>
+    <h2>🕷️ Nossa história em fotos 🦇</h2>
+    <p class="texto">Do dia a dia no mercado às camisetas combinando — cada foto é um capítulo do nosso primeiro ano.</p>
+    <div class="galeria">
+      <figure><img class="foto" data-b64="fotos/foto2.b64" alt="Kayky e Vanessa arrumados, sorrindo"><figcaption>Arrumados e prontos pra festa 💃</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto3.b64" alt="Kayky e Vanessa com patinhos de brinquedo na cabeça"><figcaption>Os patinhos na cabeça 🐤🐤</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto4.b64" alt="Kayky e Vanessa de mãos dadas em um restaurante"><figcaption>De mãos dadas, sempre 🤝❤️</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto5.b64" alt="Kayky e Vanessa sorrindo no mercado"><figcaption>Companheiros até no mercado 🛒</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto6.b64" alt="Kayky e Vanessa com camisetas combinando do Homem-Aranha"><figcaption>Camisetas combinando, modo aranha ativado 🕸️</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto7.b64" alt="Kayky e Vanessa em casa, sorrindo"><figcaption>Em casa, no nosso cantinho 🏠</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto8.b64" alt="Kayky e Vanessa em um passeio"><figcaption>Rolê com a camisa do PlayStation 🎮</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- SUPERPODERES -->
+  <section>
+    <h2>Nossos superpoderes</h2>
+    <div class="cards">
+      <div class="card aranha-card">
+        <h3>🕸️ Sentido de aranha</h3>
+        <p>É aquele arrepio bom que avisa: “é ela”. Com você, meu sentido nunca erra — ele apita toda vez que você chega.</p>
+      </div>
+      <div class="card morcego-card">
+        <h3>🦇 Guardião da noite</h3>
+        <p>Que nem o morcego vigia a cidade, eu quero cuidar de você em todos os turnos: nos dias de sol e nas noites difíceis.</p>
+      </div>
+      <div class="card dupla-card">
+        <h3>❤️ Dupla imbatível</h3>
+        <p>Sozinhos a gente já é forte. Juntos, viramos aquela dupla que nenhum vilão — nem a segunda-feira — consegue derrubar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section>
+    <div class="carta">
+      <h2>Uma cartinha pra você, Vanessa</h2>
+      <p>Hoje a gente completa 1 ano. 365 dias que passaram voando e, ao mesmo tempo, pareceram uma vida inteira de tanta coisa boa que a gente viveu.</p>
+      <p>Obrigado por cada risada no mercado, por cada foto boba, por combinar camiseta comigo e por transformar qualquer dia comum em um dia especial. Você é minha parceira de aventuras, meu porto seguro e meu lugar favorito no mundo.</p>
+      <p>Que esse seja só o primeiro de muitos anos. Eu te amo — hoje, amanhã e em todas as próximas temporadas da nossa história.</p>
+      <p class="assina">Com amor, Kayky ❤️</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="bat">🦇</span> Feito com ❤️ pelo Kayky para a Vanessa — 09/11/2026 <span class="bat">🕷️</span>
+</footer>
+
+<script>
+  // fotos codificadas (base64) -> imagens
+  document.querySelectorAll('img[data-b64]').forEach(function(img){
+    fetch(img.getAttribute('data-b64')).then(function(r){return r.text()}).then(function(t){
+      img.src = 'data:image/jpeg;base64,' + t.trim();
+    }).catch(function(){});
+  });
+  // estrelas
+  var ceu = document.getElementById('ceu');
+  for (var i = 0; i < 60; i++) {
+    var e = document.createElement('span');
+    e.className = 'estrela';
+    var s = (Math.random() * 2.2 + 1).toFixed(1);
+    e.style.width = s + 'px'; e.style.height = s + 'px';
+    e.style.left = (Math.random() * 100) + '%';
+    e.style.top = (Math.random() * 55) + '%';
+    e.style.animationDelay = (Math.random() * 3) + 's';
+    ceu.appendChild(e);
+  }
+  // morcegos voando
+  for (var b = 0; b < 3; b++) {
+    var m = document.createElement('span');
+    m.className = 'morcego';
+    m.textContent = '🦇';
+    m.style.top = (40 + b * 46) + 'px';
+    m.style.fontSize = (20 + b * 5) + 'px';
+    m.style.animationDuration = (17 + b * 6) + 's';
+    m.style.animationDelay = (b * 5) + 's';
+    ceu.appendChild(m);
+  }
+  // corações subindo
+  var caixa = document.getElementById('coracoes');
+  var simbolos = ['❤️','💖','💗','🕸️'];
+  for (var c = 0; c < 16; c++) {
+    var h = document.createElement('span');
+    h.textContent = simbolos[c % simbolos.length];
+    h.style.left = (Math.random() * 96) + '%';
+    h.style.fontSize = (13 + Math.random() * 16) + 'px';
+    h.style.animationDuration = (9 + Math.random() * 9) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    caixa.appendChild(h);
+  }
+  // contador ao vivo desde 09/11/2025
+  var inicio = new Date('2025-11-09T00:00:00-03:00').getTime();
+  function tick(){
+    var diff = Math.max(0, Date.now() - inicio);
+    var d = Math.floor(diff / 864e5);
+    document.getElementById('dias').textContent = d;
+    document.getElementById('horas').textContent = Math.floor(diff / 36e5) % 24;
+    document.getElementById('min').textContent = Math.floor(diff / 6e4) % 60;
+    document.getElementById('seg').textContent = Math.floor(diff / 1e3) % 60;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
