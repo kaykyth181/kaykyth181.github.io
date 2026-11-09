@@ -92,12 +92,12 @@
   body.travado{overflow:hidden}
   #portao{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
     background:radial-gradient(ellipse at 50% 30%, #2a1130 0%, #12142a 60%, #0d1020 100%);
-    padding:20px;overflow-y:auto;transition:opacity .7s ease}
+    padding:20px;overflow-y:auto;transition:opacity 1.4s ease}
   #portao.saindo{opacity:0;pointer-events:none}
   .cartao{position:relative;width:min(430px,94vw);background:linear-gradient(165deg,#fff8ee,#ffeef0);
     color:#43222e;border-radius:22px;padding:38px 28px 32px;text-align:center;
     box-shadow:0 30px 70px rgba(0,0,0,.65),0 0 0 6px rgba(245,197,66,.35),0 0 0 12px rgba(164,19,60,.55);
-    transition:transform .6s ease,opacity .6s ease}
+    transition:transform 1.1s ease,opacity 1.1s ease}
   .cartao .icone{font-size:44px;line-height:1}
   .cartao h2{color:#a4133c;font-size:clamp(26px,6vw,34px);margin:12px 0 4px}
   .cartao .para{font-style:italic;font-size:17px;color:#6d2a3f;line-height:1.6}
@@ -253,8 +253,8 @@
       p.classList.add('saindo');
       document.body.classList.remove('travado');
       window.scrollTo(0, 0);
-      setTimeout(function(){ if (p) p.remove(); }, 750);
-    }, 620);
+      setTimeout(function(){ if (p) p.remove(); }, 1500);
+    }, 2600);
   });
   // fotos codificadas (base64) -> imagens
   document.querySelectorAll('img[data-b64]').forEach(function(img){
