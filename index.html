@@ -13,7 +13,7 @@
   html{scroll-behavior:smooth}
   body{font-family:Georgia,'Times New Roman',serif;background:var(--noite);color:var(--creme);overflow-x:hidden}
   /* ---------- céu noturno / lua / morcegos ---------- */
-  .ceu{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  .ceu{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
     radial-gradient(ellipse at 85% -5%, rgba(245,197,66,.22), transparent 45%),
     linear-gradient(180deg,#0d1020 0%,#1a1030 55%,#2a1130 100%)}
   .lua{position:absolute;top:34px;right:6vw;width:86px;height:86px;border-radius:50%;
@@ -97,30 +97,64 @@
   #portao h2{font-size:clamp(28px,6vw,42px)}
   #portao .para{color:#ffd9de;font-style:italic;font-size:18px;margin-top:6px}
   #portao .dica{color:#cbb8d9;margin-top:26px;font-size:15px;letter-spacing:1px;animation:pulsar 1.8s infinite}
-  .envelope{position:relative;width:min(430px,90vw);height:280px;margin-top:38px;perspective:900px}
-  .env-corpo{position:absolute;inset:0;border-radius:14px;overflow:hidden;
-    background:linear-gradient(160deg,#a4133c,#7f1d3a 60%,#5c1228);box-shadow:0 30px 70px rgba(0,0,0,.65);
-    border:1px solid rgba(245,197,66,.5)}
-  .env-corpo::before,.env-corpo::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(115deg,transparent 49.4%,rgba(0,0,0,.22) 50%,transparent 50.6%),
-               linear-gradient(-115deg,transparent 49.4%,rgba(0,0,0,.22) 50%,transparent 50.6%)}
-  .papel{position:absolute;left:5%;right:5%;top:8%;height:82%;background:linear-gradient(170deg,#fff8ee,#ffeef0);
-    border-radius:10px;color:#43222e;padding:22px 18px;z-index:1;transform:translateY(38%);
-    transition:transform 1s ease .35s;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .envelope{position:relative;width:min(430px,92vw);aspect-ratio:43/28;margin-top:74px;perspective:900px}
+  .env-fundo{position:absolute;inset:0;border-radius:14px;background:linear-gradient(160deg,#8e1f3e,#5c1228);
+    border:1px solid rgba(245,197,66,.5);box-shadow:0 30px 70px rgba(0,0,0,.65)}
+  .papel{position:absolute;left:5%;right:5%;top:4%;bottom:6%;background:linear-gradient(170deg,#fff8ee,#ffeef0);
+    border-radius:10px;color:#43222e;padding:20px 18px;z-index:1;
+    transform:translateY(6%);transition:transform 1s ease .4s;box-shadow:0 10px 30px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;overflow:hidden}
   .papel h3{color:#a4133c;font-size:21px;margin-bottom:8px}
   .papel p{font-size:15.5px;line-height:1.55;font-style:italic}
-  .aba{position:absolute;left:0;right:0;top:0;height:52%;z-index:3;transform-origin:top center;
+  .env-frente{position:absolute;inset:0;z-index:2;border-radius:14px;
+    background:linear-gradient(200deg,#b01e42,#7f1d3a 55%,#67152d);
+    clip-path:polygon(0 34%,50% 68%,100% 34%,100% 100%,0 100%);
+    border-bottom:1px solid rgba(245,197,66,.5)}
+  .env-lados{position:absolute;inset:0;z-index:2;border-radius:14px;pointer-events:none;
+    background:linear-gradient(115deg,rgba(0,0,0,.20) 0%,transparent 28%),
+               linear-gradient(-115deg,rgba(0,0,0,.20) 0%,transparent 28%);
+    clip-path:polygon(0 34%,50% 68%,100% 34%,100% 100%,0 100%)}
+  .aba{position:absolute;left:0;right:0;top:0;height:56%;z-index:3;transform-origin:top center;
     background:linear-gradient(180deg,#c2264f,#8e1f3e);clip-path:polygon(0 0,100% 0,50% 100%);
-    border-top:1px solid rgba(245,197,66,.6);transition:transform .7s ease}
-  .selo{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:4;width:86px;height:86px;
-    border-radius:50%;border:3px solid #fff3;cursor:pointer;font-size:37px;line-height:1;
+    transition:transform .65s ease}
+  .selo-coracao{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:4;width:84px;height:84px;
+    border-radius:50%;border:3px solid rgba(255,255,255,.35);cursor:pointer;font-size:36px;line-height:1;
     background:radial-gradient(circle at 35% 30%, #ff8fa5, #e23636 62%, #a4133c);
     box-shadow:0 10px 26px rgba(0,0,0,.5), inset 0 -6px 12px rgba(0,0,0,.25);
-    animation:pulsar 1.6s infinite;transition:opacity .4s, transform .4s}
-  .selo:hover{transform:translate(-50%,-50%) scale(1.07)}
-  .envelope.aberta .aba{transform:rotateX(178deg);z-index:0}
-  .envelope.aberta .papel{transform:translateY(-16%) scale(1.04)}
-  .envelope.aberta .selo{opacity:0;transform:translate(-50%,-50%) scale(1.7);pointer-events:none}
+    animation:pulsar 1.6s infinite;transition:opacity .35s, scale .35s;-webkit-tap-highlight-color:transparent}
+  .selo-coracao:active{scale:1.08}
+  .envelope.aberta .aba{transform:rotateX(180deg);z-index:0}
+  .envelope.aberta .papel{transform:translateY(-38%) scale(1.03);z-index:2}
+  .envelope.aberta .selo-coracao{opacity:0;pointer-events:none;animation:none}
+  /* ---------- celular ---------- */
+  @media (max-width:640px){
+    section{padding:46px 16px}
+    .hero{padding-top:64px}
+    .teia{width:118px;height:118px}
+    .aranha{left:76px}
+    .aranha .fio{height:42px}
+    .aranha .bicho{font-size:24px}
+    .lua{width:58px;height:58px;top:16px;right:14px}
+    .selo-destaque,.selo{letter-spacing:2px}
+    .selo{font-size:12px;padding:7px 14px}
+    .moldura{width:min(340px,94vw);margin-top:28px}
+    .contador{gap:8px}
+    .caixa{min-width:70px;padding:12px 6px}
+    .caixa b{font-size:26px}
+    .galeria{grid-template-columns:1fr 1fr;gap:10px}
+    .galeria figcaption{font-size:13px;padding:8px 4px}
+    .cards{grid-template-columns:1fr}
+    p.texto{font-size:16.5px}
+    .carta{padding:26px 18px;transform:none}
+    .carta p{font-size:16.5px}
+    #portao{padding:18px 12px}
+    .envelope{margin-top:64px}
+    .papel{padding:14px 12px}
+    .papel h3{font-size:18px}
+    .papel p{font-size:13.5px}
+    #portao button.selo-coracao{width:70px;height:70px;font-size:30px;padding:0}
+    #portao .dica{margin-top:20px;font-size:14px}
+  }
 </style>
 </head>
 <body class="travado">
@@ -129,13 +163,15 @@
   <h2>💌 Você recebeu uma carta</h2>
   <p class="para">Para: <b>Vanessa</b> &nbsp;·&nbsp; De: <b>Kayky</b></p>
   <div class="envelope" id="envelope">
+    <div class="env-fundo"></div>
     <div class="papel">
       <h3>Para a Vanessa ❤️</h3>
       <p>Tem uma surpresa aqui dentro, feita com todo o meu amor…<br>É só abrir pra ver. 🕸️🦇</p>
     </div>
-    <div class="env-corpo"></div>
+    <div class="env-frente"></div>
+    <div class="env-lados"></div>
     <div class="aba"></div>
-    <button class="selo" id="selo" aria-label="Abrir a carta">❤️</button>
+    <button class="selo-coracao" id="selo" aria-label="Abrir a carta">❤️</button>
   </div>
   <p class="dica">toque no coração para abrir</p>
 </div>
