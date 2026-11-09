@@ -90,7 +90,7 @@
   img[data-b64]{min-height:120px}
   /* ---------- portão: carta com adesivo de coração ---------- */
   body.travado{overflow:hidden}
-  #portao{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  #portao{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;
     background:radial-gradient(ellipse at 50% 30%, #2a1130 0%, #12142a 60%, #0d1020 100%);
     padding:24px;transition:opacity .8s ease;text-align:center}
   #portao.saindo{opacity:0;pointer-events:none}
@@ -100,7 +100,7 @@
   .envelope{position:relative;width:min(430px,92vw);aspect-ratio:43/28;margin-top:74px;perspective:900px}
   .env-fundo{position:absolute;inset:0;border-radius:14px;background:linear-gradient(160deg,#8e1f3e,#5c1228);
     border:1px solid rgba(245,197,66,.5);box-shadow:0 30px 70px rgba(0,0,0,.65)}
-  .papel{position:absolute;left:5%;right:5%;top:4%;bottom:6%;background:linear-gradient(170deg,#fff8ee,#ffeef0);
+  .papel{position:absolute;left:7%;right:7%;top:9%;bottom:5%;background:linear-gradient(170deg,#fff8ee,#ffeef0);
     border-radius:10px;color:#43222e;padding:20px 18px;z-index:1;
     transform:translateY(6%);transition:transform 1s ease .4s;box-shadow:0 10px 30px rgba(0,0,0,.35);
     display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;overflow:hidden}
@@ -108,23 +108,22 @@
   .papel p{font-size:15.5px;line-height:1.55;font-style:italic}
   .env-frente{position:absolute;inset:0;z-index:2;border-radius:14px;
     background:linear-gradient(200deg,#b01e42,#7f1d3a 55%,#67152d);
-    clip-path:polygon(0 34%,50% 68%,100% 34%,100% 100%,0 100%);
-    border-bottom:1px solid rgba(245,197,66,.5)}
+    clip-path:polygon(0 26%,50% 60%,100% 26%,100% 100%,0 100%)}
   .env-lados{position:absolute;inset:0;z-index:2;border-radius:14px;pointer-events:none;
     background:linear-gradient(115deg,rgba(0,0,0,.20) 0%,transparent 28%),
                linear-gradient(-115deg,rgba(0,0,0,.20) 0%,transparent 28%);
-    clip-path:polygon(0 34%,50% 68%,100% 34%,100% 100%,0 100%)}
-  .aba{position:absolute;left:0;right:0;top:0;height:56%;z-index:3;transform-origin:top center;
+    clip-path:polygon(0 26%,50% 60%,100% 26%,100% 100%,0 100%)}
+  .aba{position:absolute;left:0;right:0;top:0;height:62%;z-index:3;transform-origin:top center;
     background:linear-gradient(180deg,#c2264f,#8e1f3e);clip-path:polygon(0 0,100% 0,50% 100%);
     transition:transform .65s ease}
-  .selo-coracao{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:4;width:84px;height:84px;
+  .selo-coracao{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);z-index:4;width:84px;height:84px;
     border-radius:50%;border:3px solid rgba(255,255,255,.35);cursor:pointer;font-size:36px;line-height:1;
     background:radial-gradient(circle at 35% 30%, #ff8fa5, #e23636 62%, #a4133c);
     box-shadow:0 10px 26px rgba(0,0,0,.5), inset 0 -6px 12px rgba(0,0,0,.25);
     animation:pulsar 1.6s infinite;transition:opacity .35s, scale .35s;-webkit-tap-highlight-color:transparent}
   .selo-coracao:active{scale:1.08}
   .envelope.aberta .aba{transform:rotateX(180deg);z-index:0}
-  .envelope.aberta .papel{transform:translateY(-38%) scale(1.03);z-index:2}
+  .envelope.aberta .papel{transform:translateY(-42%) scale(1.03);z-index:2}
   .envelope.aberta .selo-coracao{opacity:0;pointer-events:none;animation:none}
   /* ---------- celular ---------- */
   @media (max-width:640px){
@@ -148,7 +147,8 @@
     .carta{padding:26px 18px;transform:none}
     .carta p{font-size:16.5px}
     #portao{padding:18px 12px}
-    .envelope{margin-top:64px}
+    .envelope{margin-top:96px}
+    .envelope.aberta .papel{transform:translateY(-36%) scale(1.02)}
     .papel{padding:14px 12px}
     .papel h3{font-size:18px}
     .papel p{font-size:13.5px}
