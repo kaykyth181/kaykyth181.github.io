@@ -88,9 +88,58 @@
   footer{position:relative;z-index:2;text-align:center;padding:38px 16px 54px;color:#bda9c9;font-size:15px}
   footer .bat{color:#05060f;font-size:20px}
   img[data-b64]{min-height:120px}
+  /* ---------- portão: carta com adesivo de coração ---------- */
+  body.travado{overflow:hidden}
+  #portao{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(ellipse at 50% 30%, #2a1130 0%, #12142a 60%, #0d1020 100%);
+    padding:24px;transition:opacity .8s ease;text-align:center}
+  #portao.saindo{opacity:0;pointer-events:none}
+  #portao h2{font-size:clamp(28px,6vw,42px)}
+  #portao .para{color:#ffd9de;font-style:italic;font-size:18px;margin-top:6px}
+  #portao .dica{color:#cbb8d9;margin-top:26px;font-size:15px;letter-spacing:1px;animation:pulsar 1.8s infinite}
+  .envelope{position:relative;width:min(430px,90vw);height:280px;margin-top:38px;perspective:900px}
+  .env-corpo{position:absolute;inset:0;border-radius:14px;overflow:hidden;
+    background:linear-gradient(160deg,#a4133c,#7f1d3a 60%,#5c1228);box-shadow:0 30px 70px rgba(0,0,0,.65);
+    border:1px solid rgba(245,197,66,.5)}
+  .env-corpo::before,.env-corpo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(115deg,transparent 49.4%,rgba(0,0,0,.22) 50%,transparent 50.6%),
+               linear-gradient(-115deg,transparent 49.4%,rgba(0,0,0,.22) 50%,transparent 50.6%)}
+  .papel{position:absolute;left:5%;right:5%;top:8%;height:82%;background:linear-gradient(170deg,#fff8ee,#ffeef0);
+    border-radius:10px;color:#43222e;padding:22px 18px;z-index:1;transform:translateY(38%);
+    transition:transform 1s ease .35s;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .papel h3{color:#a4133c;font-size:21px;margin-bottom:8px}
+  .papel p{font-size:15.5px;line-height:1.55;font-style:italic}
+  .aba{position:absolute;left:0;right:0;top:0;height:52%;z-index:3;transform-origin:top center;
+    background:linear-gradient(180deg,#c2264f,#8e1f3e);clip-path:polygon(0 0,100% 0,50% 100%);
+    border-top:1px solid rgba(245,197,66,.6);transition:transform .7s ease}
+  .selo{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:4;width:86px;height:86px;
+    border-radius:50%;border:3px solid #fff3;cursor:pointer;font-size:37px;line-height:1;
+    background:radial-gradient(circle at 35% 30%, #ff8fa5, #e23636 62%, #a4133c);
+    box-shadow:0 10px 26px rgba(0,0,0,.5), inset 0 -6px 12px rgba(0,0,0,.25);
+    animation:pulsar 1.6s infinite;transition:opacity .4s, transform .4s}
+  .selo:hover{transform:translate(-50%,-50%) scale(1.07)}
+  .envelope.aberta .aba{transform:rotateX(178deg);z-index:0}
+  .envelope.aberta .papel{transform:translateY(-16%) scale(1.04)}
+  .envelope.aberta .selo{opacity:0;transform:translate(-50%,-50%) scale(1.7);pointer-events:none}
 </style>
 </head>
-<body>
+<body class="travado">
+<!-- PORTÃO: a carta -->
+<div id="portao">
+  <h2>💌 Você recebeu uma carta</h2>
+  <p class="para">Para: <b>Vanessa</b> &nbsp;·&nbsp; De: <b>Kayky</b></p>
+  <div class="envelope" id="envelope">
+    <div class="papel">
+      <h3>Para a Vanessa ❤️</h3>
+      <p>Tem uma surpresa aqui dentro, feita com todo o meu amor…<br>É só abrir pra ver. 🕸️🦇</p>
+    </div>
+    <div class="env-corpo"></div>
+    <div class="aba"></div>
+    <button class="selo" id="selo" aria-label="Abrir a carta">❤️</button>
+  </div>
+  <p class="dica">toque no coração para abrir</p>
+</div>
+
 <div class="ceu" id="ceu"><div class="lua"></div></div>
 
 <svg class="teia" viewBox="0 0 200 200" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.4">
@@ -174,6 +223,19 @@
 </footer>
 
 <script>
+  // portão: abrir a carta para entrar no site
+  document.getElementById('selo').addEventListener('click', function(){
+    document.getElementById('envelope').classList.add('aberta');
+    setTimeout(function(){
+      document.getElementById('portao').classList.add('saindo');
+      document.body.classList.remove('travado');
+      window.scrollTo(0, 0);
+      setTimeout(function(){
+        var p = document.getElementById('portao');
+        if (p) p.remove();
+      }, 900);
+    }, 1500);
+  });
   // fotos codificadas (base64) -> imagens
   document.querySelectorAll('img[data-b64]').forEach(function(img){
     fetch(img.getAttribute('data-b64')).then(function(r){return r.text()}).then(function(t){
