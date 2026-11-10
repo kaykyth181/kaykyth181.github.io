@@ -191,6 +191,12 @@
     margin-top:14px;animation:pulsar 1.8s infinite}
   .carta-suspensa.aberta{cursor:default;box-shadow:0 24px 60px rgba(0,0,0,.5)}
   @media (prefers-reduced-motion: reduce){ .pendulo{animation:none} }
+
+  /* aranha tecendo a teia */
+  #espiralExterna{stroke-dasharray:100;animation:tecer 16s linear infinite}
+  @keyframes tecer{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+  #aranhaTecendo .pernas{transform-box:fill-box;transform-origin:center;animation:mexerPernas .28s ease-in-out infinite alternate}
+  @keyframes mexerPernas{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
 </style>
 </head>
 <body class="travado">
@@ -286,18 +292,37 @@
   <!-- CARTA SUSPENSA NA TEIA -->
   <section class="revelar">
     <div class="cena-teia">
-      <svg class="teia-fundo" viewBox="0 0 800 190" fill="none" stroke="#ffffff" stroke-width="1.3" aria-hidden="true">
-        <path d="M400 -10 L228 -90"/>
-        <path d="M400 -10 L283 -160"/>
-        <path d="M400 -10 L360 -196"/>
-        <path d="M400 -10 L440 -196"/>
-        <path d="M400 -10 L517 -160"/>
-        <path d="M400 -10 L572 -90"/>
-        <path d="M366 -26 Q371 -29 377 -40 Q384 -40 392 -47 Q400 -43 408 -47 Q416 -40 423 -40 Q429 -29 434 -26"/>
-        <path d="M338 -39 Q348 -44 358 -64 Q372 -63 386 -77 Q400 -70 414 -77 Q428 -63 442 -64 Q452 -44 462 -39"/>
-        <path d="M309 -52 Q324 -61 338 -89 Q359 -88 379 -108 Q400 -98 421 -108 Q441 -88 462 -89 Q476 -61 491 -52"/>
-        <path d="M279 -67 Q298 -78 318 -116 Q345 -115 372 -141 Q400 -128 428 -141 Q455 -115 482 -116 Q502 -78 521 -67"/>
-        <path d="M248 -81 Q272 -95 297 -142 Q331 -142 365 -174 Q400 -158 435 -174 Q469 -142 503 -142 Q528 -95 552 -81"/>
+      <svg class="teia-fundo" viewBox="0 0 800 200" fill="none" stroke="#ffffff" stroke-width="1.25" aria-hidden="true">
+        <path d="M400 -14 L83 -105" opacity=".55"/>
+        <path d="M400 -14 L717 -105" opacity=".55"/>
+        <path d="M400 -14 L270 -239" opacity=".55"/>
+        <path d="M400 -14 L530 -239" opacity=".55"/>
+        <path d="M400 -14 L212 -68"/>
+        <path d="M400 -14 L246 -135"/>
+        <path d="M400 -14 L302 -184"/>
+        <path d="M400 -14 L366 -207"/>
+        <path d="M400 -14 L434 -207"/>
+        <path d="M400 -14 L498 -184"/>
+        <path d="M400 -14 L554 -135"/>
+        <path d="M400 -14 L588 -68"/>
+        <path d="M376 -21 Q379 -22 382 -28 Q384 -30 386 -38 Q391 -34 396 -36 Q400 -35 405 -40 Q409 -35 412 -36 Q415 -29 418 -28 Q421 -22 425 -21"/>
+        <path d="M355 -27 Q360 -29 364 -42 Q370 -44 375 -57 Q384 -52 392 -58 Q400 -54 408 -62 Q416 -53 423 -55 Q429 -43 435 -41 Q441 -29 446 -27"/>
+        <path d="M330 -34 Q337 -38 344 -58 Q353 -60 362 -79 Q375 -73 388 -84 Q400 -77 413 -87 Q425 -74 436 -77 Q446 -59 456 -57 Q463 -38 471 -34"/>
+        <path d="M303 -42 Q313 -47 322 -75 Q335 -78 348 -103 Q366 -96 383 -111 Q400 -102 418 -115 Q434 -97 450 -101 Q464 -77 478 -75 Q488 -47 498 -42"/>
+        <path d="M274 -50 Q286 -57 298 -94 Q316 -97 333 -129 Q356 -120 378 -141 Q400 -128 423 -144 Q444 -121 465 -127 Q483 -96 501 -93 Q514 -57 527 -50"/>
+        <path d="M246 -58 Q260 -67 275 -112 Q296 -116 318 -155 Q345 -145 372 -170 Q400 -154 428 -174 Q454 -146 480 -153 Q503 -115 525 -112 Q540 -67 556 -59"/>
+        <path id="espiralExterna" pathLength="100" d="M217 -67 Q234 -77 251 -130 Q277 -135 303 -181 Q335 -169 367 -200 Q400 -180 433 -203 Q464 -170 495 -179 Q522 -134 549 -130 Q567 -77 585 -67"/>
+      <g id="aranhaTecendo">
+        <g class="pernas">
+          <path d="M-4 -2 L-14 -9 M-5 1 L-16 -3 M-5 4 L-15 5 M-3 7 L-11 13" stroke="#1b1030" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+          <path d="M4 -2 L14 -9 M5 1 L16 -3 M5 4 L15 5 M3 7 L11 13" stroke="#1b1030" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+        </g>
+        <ellipse cx="0" cy="4" rx="7.5" ry="9" fill="#241640"/>
+        <circle cx="0" cy="-4" r="5" fill="#2e1c52"/>
+        <path d="M0 -1.5 C -3.4 -5 -8 -1 -4.6 2.6 L0 6 L4.6 2.6 C 8 -1 3.4 -5 0 -1.5Z" fill="#e23636" transform="translate(0,1) scale(0.62)"/>
+        <circle cx="-1.8" cy="-5" r="0.95" fill="#fff"/><circle cx="1.8" cy="-5" r="0.95" fill="#fff"/>
+        <animateMotion dur="16s" repeatCount="indefinite" rotate="auto"><mpath href="#espiralExterna"/></animateMotion>
+      </g>
       </svg>
       <div class="pendulo" id="pendulo">
         <div class="fio f1"></div><div class="fio f2"></div><div class="fio f3"></div>
