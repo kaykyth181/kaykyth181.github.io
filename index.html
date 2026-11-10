@@ -170,6 +170,27 @@
   #luz .ant{left:10px} #luz .prox{right:10px}
   #luz .contador-foto{margin-top:10px;color:#cbb8d9;font-size:14px;letter-spacing:2px}
   @media (max-width:640px){ #luz .nav{width:40px;height:40px;font-size:24px} }
+
+  /* ---------- carta suspensa na teia ---------- */
+  .cena-teia{position:relative;padding-top:64px}
+  .cena-teia .teia-fundo{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:min(760px,104vw);
+    opacity:.5;pointer-events:none;z-index:0}
+  .pendulo{position:relative;z-index:1;transform-origin:50% -64px;animation:balanco 5.2s ease-in-out infinite alternate}
+  @keyframes balanco{from{transform:rotate(-2.1deg)}to{transform:rotate(2.1deg)}}
+  .fio{position:absolute;top:-64px;width:2px;height:78px;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.9) 0 5px,rgba(255,255,255,.35) 5px 10px)}
+  .fio.f1{left:16%} .fio.f2{left:50%;margin-left:-1px} .fio.f3{right:16%}
+  .pendulo.parado{animation:none}
+  .carta-suspensa{cursor:pointer;transition:max-height .9s ease, box-shadow .4s ease}
+  .carta-suspensa .corpo{max-height:118px;overflow:hidden;position:relative;transition:max-height .9s ease}
+  .carta-suspensa .corpo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:74px;
+    background:linear-gradient(180deg,rgba(255,248,238,0),#fff3e6)}
+  .carta-suspensa.aberta .corpo{max-height:1200px}
+  .carta-suspensa.aberta .corpo::after{display:none}
+  .carta-suspensa .dica-carta{text-align:center;color:#a4133c;font-weight:700;font-size:15px;letter-spacing:.6px;
+    margin-top:14px;animation:pulsar 1.8s infinite}
+  .carta-suspensa.aberta{cursor:default;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  @media (prefers-reduced-motion: reduce){ .pendulo{animation:none} }
 </style>
 </head>
 <body class="travado">
@@ -262,12 +283,24 @@
     </div>
   </section>
 
-  <!-- CARTA -->
+  <!-- CARTA SUSPENSA NA TEIA -->
   <section class="revelar">
-    <div class="carta">
-      <h2>Uma cartinha pra você, Vanessa</h2>
-      <p class="arco-iris">Quando te conheci ja te achava incrivel, mas cada dia que vivo com você é mais incrivel ainda, é aquele ditado de se apaixonar pela pessoa todo dia né, sei que não sou o melhor do mundo mas tento melhorar mesmo que aos poucos pra te ver feliz, te amo muito meu amor</p>
-      <p class="assina">Com amor, Kayky ❤️</p>
+    <div class="cena-teia">
+      <svg class="teia-fundo" viewBox="0 0 400 130" fill="none" stroke="#ffffff" stroke-width="1.1" aria-hidden="true">
+        <path d="M200 0 L200 128 M60 0 L150 128 M340 0 L250 128 M0 0 L90 128 M400 0 L310 128 M120 0 L120 128 M280 0 L280 128"/>
+        <path d="M40 26 Q200 62 360 26 M24 62 Q200 104 376 62 M12 98 Q200 148 388 98"/>
+      </svg>
+      <div class="pendulo" id="pendulo">
+        <div class="fio f1"></div><div class="fio f2"></div><div class="fio f3"></div>
+        <div class="carta carta-suspensa" id="cartaSuspensa" title="Toque para ler a carta">
+          <h2>Uma cartinha pra você, Vanessa</h2>
+          <div class="corpo">
+            <p class="arco-iris">Quando te conheci ja te achava incrivel, mas cada dia que vivo com você é mais incrivel ainda, é aquele ditado de se apaixonar pela pessoa todo dia né, sei que não sou o melhor do mundo mas tento melhorar mesmo que aos poucos pra te ver feliz, te amo muito meu amor</p>
+            <p class="assina">Com amor, Kayky ❤️</p>
+          </div>
+          <p class="dica-carta" id="dicaCarta">🕸️ toque na carta pra ler 💌</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -373,6 +406,15 @@
   document.getElementById('luzAnt').addEventListener('click', function(e){ e.stopPropagation(); mostrarFoto(atual - 1); });
   document.getElementById('luzProx').addEventListener('click', function(e){ e.stopPropagation(); mostrarFoto(atual + 1); });
   luz.addEventListener('click', function(e){ if (e.target === luz) fecharLuz(); });
+
+  // carta suspensa: clicar expande pra ler; o balanço para quando abre
+  var cartaS = document.getElementById('cartaSuspensa'), pendulo = document.getElementById('pendulo'),
+      dicaCarta = document.getElementById('dicaCarta');
+  cartaS.addEventListener('click', function(){
+    var abriu = cartaS.classList.toggle('aberta');
+    pendulo.classList.toggle('parado', abriu);
+    dicaCarta.textContent = abriu ? '🕸️ toque pra fechar' : '🕸️ toque na carta pra ler 💌';
+  });
 </script>
 </body>
 </html>
