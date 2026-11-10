@@ -173,10 +173,10 @@
 
   /* ---------- carta suspensa na teia ---------- */
   .cena-teia{position:relative;padding-top:64px}
-  .cena-teia .teia-fundo{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:min(760px,104vw);
-    opacity:.5;pointer-events:none;z-index:0}
-  .pendulo{position:relative;z-index:1;transform-origin:50% -64px;animation:balanco 5.2s ease-in-out infinite alternate}
-  @keyframes balanco{from{transform:rotate(-2.1deg)}to{transform:rotate(2.1deg)}}
+  .cena-teia .teia-fundo{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:min(820px,110vw);
+    opacity:.75;pointer-events:none;z-index:0}
+  .pendulo{position:relative;z-index:1;transform-origin:50% -64px;animation:balanco 4.4s ease-in-out infinite alternate}
+  @keyframes balanco{from{transform:rotate(-4.6deg)}to{transform:rotate(4.6deg)}}
   .fio{position:absolute;top:-64px;width:2px;height:78px;
     background:repeating-linear-gradient(180deg,rgba(255,255,255,.9) 0 5px,rgba(255,255,255,.35) 5px 10px)}
   .fio.f1{left:16%} .fio.f2{left:50%;margin-left:-1px} .fio.f3{right:16%}
@@ -286,9 +286,18 @@
   <!-- CARTA SUSPENSA NA TEIA -->
   <section class="revelar">
     <div class="cena-teia">
-      <svg class="teia-fundo" viewBox="0 0 400 130" fill="none" stroke="#ffffff" stroke-width="1.1" aria-hidden="true">
-        <path d="M200 0 L200 128 M60 0 L150 128 M340 0 L250 128 M0 0 L90 128 M400 0 L310 128 M120 0 L120 128 M280 0 L280 128"/>
-        <path d="M40 26 Q200 62 360 26 M24 62 Q200 104 376 62 M12 98 Q200 148 388 98"/>
+      <svg class="teia-fundo" viewBox="0 0 800 190" fill="none" stroke="#ffffff" stroke-width="1.3" aria-hidden="true">
+        <path d="M400 -10 L228 -90"/>
+        <path d="M400 -10 L283 -160"/>
+        <path d="M400 -10 L360 -196"/>
+        <path d="M400 -10 L440 -196"/>
+        <path d="M400 -10 L517 -160"/>
+        <path d="M400 -10 L572 -90"/>
+        <path d="M366 -26 Q371 -29 377 -40 Q384 -40 392 -47 Q400 -43 408 -47 Q416 -40 423 -40 Q429 -29 434 -26"/>
+        <path d="M338 -39 Q348 -44 358 -64 Q372 -63 386 -77 Q400 -70 414 -77 Q428 -63 442 -64 Q452 -44 462 -39"/>
+        <path d="M309 -52 Q324 -61 338 -89 Q359 -88 379 -108 Q400 -98 421 -108 Q441 -88 462 -89 Q476 -61 491 -52"/>
+        <path d="M279 -67 Q298 -78 318 -116 Q345 -115 372 -141 Q400 -128 428 -141 Q455 -115 482 -116 Q502 -78 521 -67"/>
+        <path d="M248 -81 Q272 -95 297 -142 Q331 -142 365 -174 Q400 -158 435 -174 Q469 -142 503 -142 Q528 -95 552 -81"/>
       </svg>
       <div class="pendulo" id="pendulo">
         <div class="fio f1"></div><div class="fio f2"></div><div class="fio f3"></div>
