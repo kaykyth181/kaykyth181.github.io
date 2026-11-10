@@ -197,6 +197,25 @@
   @keyframes tecer{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
   #aranhaTecendo .pernas{transform-box:fill-box;transform-origin:center;animation:mexerPernas .28s ease-in-out infinite alternate}
   @keyframes mexerPernas{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+
+  /* ---------- botão ano 2 ---------- */
+  .ano2{text-align:center}
+  #botaoAno2{background:linear-gradient(135deg,#e23636,#a4133c);color:#fff;border:2px solid #f5c542;
+    font-size:clamp(18px,5vw,23px);font-weight:800;padding:18px 30px;border-radius:999px;cursor:pointer;
+    box-shadow:0 10px 34px rgba(226,54,54,.5);animation:piscarBotao 1s ease-in-out infinite;max-width:92vw}
+  @keyframes piscarBotao{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.07);filter:brightness(1.35)}}
+  #celebra{position:fixed;inset:0;z-index:70;background:rgba(8,6,20,.9);display:none;align-items:center;justify-content:center;padding:18px}
+  #celebra.aberta{display:flex}
+  #celebra .painel{background:linear-gradient(170deg,#fff8ee,#ffeef0);color:#43222e;border-radius:18px;max-width:520px;width:100%;
+    padding:34px 26px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.6);animation:surgir .5s ease}
+  #celebra h2{color:#a4133c;font-size:clamp(25px,6.4vw,34px);margin-bottom:8px}
+  #celebra .selo{display:inline-block;background:#a4133c;color:#fff;font-weight:800;letter-spacing:1.5px;
+    padding:6px 14px;border-radius:999px;font-size:13px;margin-bottom:14px}
+  #celebra p{font-size:17px;line-height:1.7;margin-bottom:10px}
+  #celebra .fechar2{margin-top:12px;background:#241640;color:#fff;border:0;border-radius:999px;
+    padding:12px 26px;font-size:16px;font-weight:700;cursor:pointer}
+  .coracao-caindo{position:fixed;top:-6vh;z-index:71;pointer-events:none;animation:cair linear forwards}
+  @keyframes cair{to{transform:translateY(112vh) rotate(320deg)}}
 </style>
 </head>
 <body class="travado">
@@ -337,6 +356,11 @@
       </div>
     </div>
   </section>
+
+  <!-- BOTÃO ANO 2 -->
+  <section class="revelar ano2">
+    <button id="botaoAno2" type="button">💘 Se você está pronta pro ano 2, clique aqui 💘</button>
+  </section>
 </main>
 
 
@@ -347,6 +371,18 @@
   <p class="txt" id="luzTxt"></p>
   <p class="contador-foto" id="luzPos"></p>
   <button class="nav prox" id="luzProx" aria-label="Próxima foto">›</button>
+</div>
+
+
+<div id="celebra" role="dialog" aria-label="Ano 2 desbloqueado">
+  <div class="painel">
+    <span class="selo">🎬 TEMPORADA 2 CONFIRMADA</span>
+    <h2>Ano 2: DESBLOQUEADO! 🎉</h2>
+    <p><strong>Kayky &amp; Vanessa</strong> — a história continua!</p>
+    <p>📅 Estreia: agora mesmo<br>🎞️ Episódios: infinitos<br>⭐ Avaliação: 10/10, a melhor dupla de todas</p>
+    <p>Que venham mais rolês, mais risadas, mais camisetas combinando e muito mais amor. ❤️</p>
+    <button class="fechar2" id="fecharCelebra" type="button">Que comece o ano 2! 🕷️🦇</button>
+  </div>
 </div>
 
 <footer>
@@ -449,6 +485,28 @@
     pendulo.classList.toggle('parado', abriu);
     dicaCarta.textContent = abriu ? '🕸️ toque pra fechar' : '🕸️ toque na carta pra ler 💌';
   });
+
+  // botão ano 2: chuva de corações + painel de "temporada 2 confirmada"
+  var celebra = document.getElementById('celebra');
+  document.getElementById('botaoAno2').addEventListener('click', function(){
+    celebra.classList.add('aberta'); document.body.classList.add('travado');
+    if (navigator.vibrate) navigator.vibrate([80, 40, 80]);
+    var emojis = ['❤️','💖','💘','🕷️','🦇','✨','💕'];
+    for (var i = 0; i < 70; i++){
+      var c = document.createElement('span');
+      c.className = 'coracao-caindo';
+      c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      c.style.left = (Math.random() * 96) + 'vw';
+      c.style.fontSize = (16 + Math.random() * 26) + 'px';
+      c.style.animationDuration = (2.4 + Math.random() * 2.8) + 's';
+      c.style.animationDelay = (Math.random() * 0.9) + 's';
+      document.body.appendChild(c);
+      (function(el){ setTimeout(function(){ el.remove(); }, 6500); })(c);
+    }
+  });
+  function fecharCelebra(){ celebra.classList.remove('aberta'); document.body.classList.remove('travado'); }
+  document.getElementById('fecharCelebra').addEventListener('click', fecharCelebra);
+  celebra.addEventListener('click', function(e){ if (e.target === celebra) fecharCelebra(); });
 </script>
 </body>
 </html>
