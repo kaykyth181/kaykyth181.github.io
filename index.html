@@ -155,6 +155,21 @@
     background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:fluxoArcoIris 9s linear infinite;font-weight:bold}
   @keyframes fluxoArcoIris{to{background-position:300% center}}
+
+  /* ---------- foto ampliada (lightbox) ---------- */
+  .foto{cursor:zoom-in}
+  #luz{position:fixed;inset:0;z-index:60;background:rgba(8,6,20,.93);display:none;
+    flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+  #luz.aberta{display:flex}
+  #luz img{max-width:min(680px,94vw);max-height:66vh;border-radius:16px;object-fit:contain;
+    box-shadow:0 24px 60px rgba(0,0,0,.7);border:2px solid rgba(245,197,66,.5)}
+  #luz .txt{max-width:620px;margin-top:18px;font-size:clamp(17px,4.4vw,21px);line-height:1.65;color:#ffeef4;font-style:italic}
+  #luz .fechar{position:absolute;top:14px;right:18px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer;line-height:1}
+  #luz .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:0;color:#fff;
+    font-size:30px;width:48px;height:48px;border-radius:50%;cursor:pointer}
+  #luz .ant{left:10px} #luz .prox{right:10px}
+  #luz .contador-foto{margin-top:10px;color:#cbb8d9;font-size:14px;letter-spacing:2px}
+  @media (max-width:640px){ #luz .nav{width:40px;height:40px;font-size:24px} }
 </style>
 </head>
 <body class="travado">
@@ -188,7 +203,7 @@
     <h1>Kayky <span class="amp">&amp;</span> Vanessa</h1>
     <p class="sub">1 ano de namoro — e a aventura só está começando</p>
     <p class="datas">desde 09 de novembro de 2025</p>
-    <div class="moldura"><img class="foto" data-b64="fotos/foto1.b64" alt="Kayky e Vanessa arrumados embaixo de um arco de flores"></div>
+    <div class="moldura"><img class="foto" data-b64="fotos/foto1.b64" data-texto="A foto do arco de flores: olhando pra ela, eu tenho certeza de que é você. ✨" alt="Kayky e Vanessa arrumados embaixo de um arco de flores"></div>
     <p class="legenda">Nossa foto favorita: de festa, no arco de flores ✨</p>
   </section>
 
@@ -218,13 +233,13 @@
     <h2>🕷️ Nossa história em fotos 🦇</h2>
     <p class="texto">Do dia a dia no mercado às camisetas combinando — cada foto é um capítulo do nosso primeiro ano.</p>
     <div class="galeria">
-      <figure><img class="foto" data-b64="fotos/foto2.b64" alt="Kayky e Vanessa arrumados, sorrindo"><figcaption>Arrumados e prontos pra festa 💃</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto3.b64" alt="Kayky e Vanessa com patinhos de brinquedo na cabeça"><figcaption>Os patinhos na cabeça 🐤🐤</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto4.b64" alt="Kayky e Vanessa de mãos dadas em um restaurante"><figcaption>De mãos dadas, sempre 🤝❤️</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto5.b64" alt="Kayky e Vanessa sorrindo no mercado"><figcaption>Companheiros até no mercado 🛒</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto6.b64" alt="Kayky e Vanessa com camisetas combinando do Homem-Aranha"><figcaption>Camisetas combinando, modo aranha ativado 🕸️</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto7.b64" alt="Kayky e Vanessa em casa, sorrindo"><figcaption>Em casa, no nosso cantinho 🏠</figcaption></figure>
-      <figure><img class="foto" data-b64="fotos/foto8.b64" alt="Kayky e Vanessa em um passeio"><figcaption>Rolê com a camisa do PlayStation 🎮</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto2.b64" data-texto="Nesse dia a gente tava impossível de bonito. E você de vermelho é meu ponto fraco, Vanessa. ❤️" alt="Kayky e Vanessa arrumados, sorrindo"><figcaption>Arrumados e prontos pra festa 💃</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto3.b64" data-texto="Patinhos na cabeça e zero vergonha: é assim que eu quero viver com você, rindo de tudo. 🐤" alt="Kayky e Vanessa com patinhos de brinquedo na cabeça"><figcaption>Os patinhos na cabeça 🐤🐤</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto4.b64" data-texto="Segurar a sua mão é o meu lugar favorito no mundo. Que a gente nunca solte. 🤝❤️" alt="Kayky e Vanessa de mãos dadas em um restaurante"><figcaption>De mãos dadas, sempre 🤝❤️</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto5.b64" data-texto="Até fazer compra vira o melhor programa do mundo com você do lado. Companheira pra tudo. 🛒" alt="Kayky e Vanessa sorrindo no mercado"><figcaption>Companheiros até no mercado 🛒</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto6.b64" data-texto="Camisetas combinando e o mesmo time: o nosso. Nenhum sentido de aranha previu eu te amar tanto. 🕸️" alt="Kayky e Vanessa com camisetas combinando do Homem-Aranha"><figcaption>Camisetas combinando, modo aranha ativado 🕸️</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto7.b64" data-texto="Sem produção, sem filtro, em casa: meu retrato favorito da gente, do jeitinho que a gente é. 🏠" alt="Kayky e Vanessa em casa, sorrindo"><figcaption>Em casa, no nosso cantinho 🏠</figcaption></figure>
+      <figure><img class="foto" data-b64="fotos/foto8.b64" data-texto="Última foto, mas nunca o último capítulo: que venham muitos anos, muitos rolês e muitas fotos novas. Eu te amo, Vanessa — que comece o ano 2! ❤️🎮" alt="Kayky e Vanessa em um passeio"><figcaption>Última foto… mas nunca o último capítulo ❤️</figcaption></figure>
     </div>
   </section>
 
@@ -256,6 +271,16 @@
     </div>
   </section>
 </main>
+
+
+<div id="luz" role="dialog" aria-label="Foto ampliada">
+  <button class="fechar" id="luzFechar" aria-label="Fechar">×</button>
+  <button class="nav ant" id="luzAnt" aria-label="Foto anterior">‹</button>
+  <img id="luzImg" alt="Foto ampliada do casal">
+  <p class="txt" id="luzTxt"></p>
+  <p class="contador-foto" id="luzPos"></p>
+  <button class="nav prox" id="luzProx" aria-label="Próxima foto">›</button>
+</div>
 
 <footer>
   <span class="bat">🦇</span> Feito com ❤️ pelo Kayky para a Vanessa — 09/11/2026 <span class="bat">🕷️</span>
@@ -331,6 +356,23 @@
     entradas.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); } });
   }, {threshold: 0.12});
   document.querySelectorAll('.revelar').forEach(function(el){ obs.observe(el); });
+
+  // clicar na foto abre ampliada, com um texto diferente para cada uma
+  var fotosClicaveis = Array.prototype.slice.call(document.querySelectorAll('img[data-texto]'));
+  var luz = document.getElementById('luz'), luzImg = document.getElementById('luzImg'),
+      luzTxt = document.getElementById('luzTxt'), luzPos = document.getElementById('luzPos'), atual = 0;
+  function mostrarFoto(i){
+    atual = (i + fotosClicaveis.length) % fotosClicaveis.length;
+    var f = fotosClicaveis[atual];
+    luzImg.src = f.src; luzTxt.textContent = f.getAttribute('data-texto');
+    luzPos.textContent = (atual + 1) + ' de ' + fotosClicaveis.length;
+  }
+  fotosClicaveis.forEach(function(f, i){ f.addEventListener('click', function(){ mostrarFoto(i); luz.classList.add('aberta'); document.body.classList.add('travado'); }); });
+  function fecharLuz(){ luz.classList.remove('aberta'); document.body.classList.remove('travado'); }
+  document.getElementById('luzFechar').addEventListener('click', fecharLuz);
+  document.getElementById('luzAnt').addEventListener('click', function(e){ e.stopPropagation(); mostrarFoto(atual - 1); });
+  document.getElementById('luzProx').addEventListener('click', function(e){ e.stopPropagation(); mostrarFoto(atual + 1); });
+  luz.addEventListener('click', function(e){ if (e.target === luz) fecharLuz(); });
 </script>
 </body>
 </html>
